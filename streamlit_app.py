@@ -10,9 +10,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# ======================
-# Session State
-# ======================
+
 
 if "token" not in st.session_state:
     st.session_state.token = None
@@ -27,16 +25,11 @@ def get_headers():
     }
 
 
-# ======================
-# Title
-# ======================
+
 
 st.title("⚖️ LegalConnect")
 st.caption("Lawyer & Client Case Management System")
 
-# ======================
-# Sidebar
-# ======================
 
 menu = st.sidebar.selectbox(
     "Navigation",
@@ -51,9 +44,7 @@ menu = st.sidebar.selectbox(
     ]
 )
 
-# ======================
-# Register
-# ======================
+
 
 if menu == "Register":
 
@@ -81,7 +72,7 @@ if menu == "Register":
         }
 
         response = requests.post(
-            f"{BASE_URL}/auth/auth/signup",
+            f"{BASE_URL}/auth/signup",
             json=payload
         )
 
@@ -90,15 +81,13 @@ if menu == "Register":
         else:
             st.error(response.text)
 
-# ======================
-# Login
-# ======================
+
 
 elif menu == "Login":
 
     st.header("Login")
 
-    username = st.text_input("Username / Email")
+    username = st.text_input("Email")
 
     password = st.text_input(
         "Password",
@@ -108,7 +97,7 @@ elif menu == "Login":
     if st.button("Login"):
 
         response = requests.post(
-            f"{BASE_URL}/auth/auth/login",
+            f"{BASE_URL}/auth/login",
             data={
                 "username": username,
                 "password": password
@@ -127,9 +116,7 @@ elif menu == "Login":
         else:
             st.error(response.text)
 
-# ======================
-# Profile
-# ======================
+
 
 elif menu == "Profile":
 
@@ -140,7 +127,7 @@ elif menu == "Profile":
     st.header("My Profile")
 
     response = requests.get(
-        f"{BASE_URL}/auth/auth/me",
+        f"{BASE_URL}/auth/me",
         headers=get_headers()
     )
 
@@ -149,9 +136,6 @@ elif menu == "Profile":
     else:
         st.error(response.text)
 
-# ======================
-# Create Complaint
-# ======================
 
 elif menu == "Create Complaint":
 
@@ -216,9 +200,7 @@ elif menu == "Create Complaint":
         else:
             st.error(response.text)
 
-# ======================
-# My Complaints
-# ======================
+
 
 elif menu == "My Complaints":
 
@@ -248,9 +230,6 @@ elif menu == "My Complaints":
     else:
         st.error(response.text)
 
-# ======================
-# Cases
-# ======================
 
 elif menu == "Cases":
 
@@ -270,9 +249,7 @@ elif menu == "Cases":
         ]
     )
 
-    # ------------------
-    # View Cases
-    # ------------------
+ 
 
     with tab1:
 
@@ -296,9 +273,7 @@ elif menu == "Cases":
         else:
             st.error(response.text)
 
-    # ------------------
-    # Create Case
-    # ------------------
+
 
     with tab2:
 
@@ -336,9 +311,7 @@ elif menu == "Cases":
             else:
                 st.error(response.text)
 
-    # ------------------
-    # Update Status
-    # ------------------
+
 
     with tab3:
 
@@ -364,9 +337,7 @@ elif menu == "Cases":
 
             st.write(response.text)
 
-    # ------------------
-    # Update Hearing
-    # ------------------
+
 
     with tab4:
 
@@ -393,9 +364,7 @@ elif menu == "Cases":
 
             st.write(response.text)
 
-    # ------------------
-    # Update Notes
-    # ------------------
+
 
     with tab5:
 
@@ -421,9 +390,6 @@ elif menu == "Cases":
 
             st.write(response.text)
 
-# ======================
-# Logout
-# ======================
 
 elif menu == "Logout":
 

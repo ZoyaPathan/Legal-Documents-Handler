@@ -23,14 +23,11 @@ from app.auth.dependencies import (
 )
 
 router = APIRouter(
-    prefix="/auth",
     tags=["Authentication"]
 )
 
 
-# ==========================
-# SIGNUP
-# ==========================
+
 @router.post(
     "/signup",
     response_model=UserOut,
@@ -67,9 +64,7 @@ def signup(
     return new_user
 
 
-# ==========================
-# LOGIN
-# ==========================
+
 @router.post(
     "/login",
     response_model=Token
@@ -115,9 +110,7 @@ def login(
     }
 
 
-# ==========================
-# CURRENT USER
-# ==========================
+
 @router.get("/me")
 def get_me(
     current_user=Depends(
@@ -127,9 +120,7 @@ def get_me(
     return current_user
 
 
-# ==========================
-# REFRESH TOKEN
-# ==========================
+
 @router.post(
     "/refresh",
     response_model=Token
