@@ -318,7 +318,7 @@ Sejal Mahangare,
 Zoya Pathan
 
 GitHub Profiles:
-- https://github.com/surabhinare21
+- https://github.com/surabhinare21-eng
 - https://github.com/sage-2102
 - https://github.com/zoyapathan
   
